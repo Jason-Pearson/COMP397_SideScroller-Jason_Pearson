@@ -25,10 +25,12 @@ var game;
 var over;
 // manifest of all our assets
 var manifest = [
-    { id: "BackButton", src: "../../Assets/images/BackButton.png" },
-    { id: "NextButton", src: "../../Assets/images/NextButton.png" },
+    { id: "RestartButton", src: "../../Assets/images/RestartButton.png" },
+    { id: "MenuButton", src: "../../Assets/images/MenuButton.png" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
-    { id: "yay", src: "../../Assets/audio/yay.ogg" }
+    { id: "shoot_cannon", src: "../../Assets/audio/shoot_cannon.wav" },
+    { id: "damage", src: "../../Assets/audio/damage.wav" },
+    { id: "pickup1", src: "../../Assets/audio/pickup1.wav" }
 ];
 function preload() {
     assets = new createjs.LoadQueue();

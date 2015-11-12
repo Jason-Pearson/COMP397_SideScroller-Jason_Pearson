@@ -1,0 +1,34 @@
+{
+
+"images": [
+    "atlas.png"
+],
+
+"frames": [
+    [2, 2, 118, 97, 0, -2, -3],
+    [122, 2, 150, 50, 0, 0, 0],
+    [274, 2, 150, 50, 0, 0, 0],
+    [122, 54, 150, 50, 0, 0, 0],
+    [274, 54, 94, 62, 0, 0, -3],
+    [370, 54, 30, 30, 0, -1, 0],
+    [402, 54, 30, 28, 0, -1, 0],
+    [402, 84, 30, 26, 0, -2, -2]
+],
+
+"animations": {
+    "Ship": [0],
+    "MenuButton": [1],
+    "RestartButton": [2],
+    "StartButton": [3],
+    "Barrel": [4],
+    "cannonball": [5],
+    "Crate": [6],
+    "Leviathan": [7]
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:8c490168b652885f68989ede1cc9318e:5dbf9b98a1aee67cd84dee3818b442fd:cbce6b53f0f49e0bf15173c25c41f876$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}
