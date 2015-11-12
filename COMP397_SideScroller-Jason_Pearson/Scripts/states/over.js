@@ -15,20 +15,22 @@ var states;
         // PUBLIC METHODS
         Over.prototype.start = function () {
             // level label
-            this._levelLabel = new objects.Label("Game Over", "60px Consolas", "#000000", 320, 240);
-            this.addChild(this._levelLabel); // add label to the stage
+            this._gameOverLabel = new objects.Label("Game Over", "50px Diane de France", "#000000", 320, 140);
+            this.addChild(this._gameOverLabel); // add label to the stage
             // back button
-            this._restartButton = new objects.Button("RestartButton", 320, 340);
+            this._restartButton = new objects.Button("RestartButton", 320, 400);
             this._restartButton.on("click", this._clickRestartButton, this); // event listener
             this.addChild(this._restartButton);
             stage.addChild(this);
+            createjs.Sound.play("over", { loop: -1 }); // play game over music at Start - infinite loop (-1)
         };
         Over.prototype.update = function () {
-            this._levelLabel.rotation += 5;
+            this._gameOverLabel.rotation += 5;
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++++
         // Callback function / Event Handler for Back Button Click
         Over.prototype._clickRestartButton = function (event) {
+            createjs.Sound.stop(); // stop game over music upon clicking the Restart Button
             changeState(config.MENU_STATE);
         };
         return Over;

@@ -24,11 +24,6 @@
     "cannonball": [5],
     "Crate": [6],
     "Leviathan": [7]
-},
-
-"texturepacker": [
-        "SmartUpdateHash: $TexturePacker:SmartUpdate:8c490168b652885f68989ede1cc9318e:5dbf9b98a1aee67cd84dee3818b442fd:cbce6b53f0f49e0bf15173c25c41f876$",
-        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
-]
+}
 
 }

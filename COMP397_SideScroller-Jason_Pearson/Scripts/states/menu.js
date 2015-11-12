@@ -14,22 +14,27 @@ var states;
         }
         // PUBLIC METHODS
         Menu.prototype.start = function () {
+            //Add Ocean to Menu Scene at Start - for Aesthetics 
+            this._ocean = new objects.Ocean();
+            this.addChild(this._ocean);
             // hello label
-            this._helloLabel = new objects.Label("Game Start", "60px Consolas", "#000000", 320, 240);
-            this.addChild(this._helloLabel); // add label to the stage
+            this._gameTitleLabel = new objects.Label("Ocean of Leviathans", "50px Diane de France", "#FFCB35", 320, 140); //Change font and color
+            this.addChild(this._gameTitleLabel); // add label to the stage
             // start button
-            this._startButton = new objects.Button("StartButton", 320, 340);
+            this._startButton = new objects.Button("StartButton", 320, 400);
             this._startButton.on("click", this._clickStartButton, this); // event listener
             this.addChild(this._startButton);
             stage.addChild(this);
+            createjs.Sound.play("menu", { loop: -1 }); // play menu music at Start - infinite loop (-1)
         };
         Menu.prototype.update = function () {
+            this._ocean.update();
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++++
         // Callback function / Event Handler for Start Button Click
         Menu.prototype._clickStartButton = function (event) {
-            //createjs.Sound.play("yay"); // activate static class play 
-            changeState(config.OVER_STATE);
+            createjs.Sound.stop(); // stop menu music upon clicking the Start Button
+            changeState(config.PLAY_STATE);
         };
         return Menu;
     })(objects.Scene);

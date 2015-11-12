@@ -14,12 +14,19 @@ var states;
         }
         // PUBLIC METHODS
         Game.prototype.start = function () {
-            // level label
-            this._levelLabel = new objects.Label("Game Play", "60px Consolas", "#000000", 320, 240);
-            this.addChild(this._levelLabel); // add label to the stage
+            //Add Ocean to Game Scene at Start
+            this._ocean = new objects.Ocean();
+            this.addChild(this._ocean);
+            //Add Ship to Game Scene at Start
+            this._ship = new objects.Ship();
+            this.addChild(this._ship);
             stage.addChild(this);
+            createjs.Sound.play("game", { loop: -1 }); // play game music at Start - infinite loop (-1)
         };
+        //GAME SCENE UPDATE METHOD
         Game.prototype.update = function () {
+            this._ocean.update(); // every frame, call the update method of Ocean class in order to scroll
+            this._ship.update(); // every frame, call the update method of Ship class in order to move
         };
         return Game;
     })(objects.Scene);

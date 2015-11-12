@@ -8,8 +8,11 @@
 /// <reference path="../typings/soundjs/soundjs.d.ts" />
 /// <reference path="../typings/preloadjs/preloadjs.d.ts" />
 
+/// <reference path="../objects/gameobject.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/button.ts" />
+/// <reference path="../objects/ship.ts" />
+/// <reference path="../objects/ocean.ts" />
 /// <reference path="../objects/scene.ts" />
 
 /// <reference path="../states/over.ts" />
@@ -29,13 +32,49 @@ var currentState: objects.Scene; // alias for our current state
 var menu: states.Menu;
 var game: states.Game;
 var over: states.Over;
+var atlas: createjs.SpriteSheet; // variable of type creatjs SpriteSheet to hold a reference for atlas spritesheet
+
+//SPRITE OBJECTS from ATLAS SPRITESHEET
+var data = {
+
+    "images": [
+        "../../Assets/images/atlas.png"
+    ],
+
+    "frames": [
+        [2, 2, 118, 97, 0, -2, -3],
+        [122, 2, 150, 50, 0, 0, 0],
+        [274, 2, 150, 50, 0, 0, 0],
+        [122, 54, 150, 50, 0, 0, 0],
+        [274, 54, 94, 62, 0, 0, -3],
+        [370, 54, 30, 30, 0, -1, 0],
+        [402, 54, 30, 28, 0, -1, 0],
+        [402, 84, 30, 26, 0, -2, -2]
+    ],
+
+    "animations": {
+        "Ship": [0],
+        "MenuButton": [1],
+        "RestartButton": [2],
+        "StartButton": [3],
+        "Barrel": [4],
+        "cannonball": [5],
+        "Crate": [6],
+        "Leviathan": [7]
+    }
+
+};
 
 // manifest of all our assets
 var manifest = [
     { id: "RestartButton", src: "../../Assets/images/RestartButton.png" },
     { id: "MenuButton", src: "../../Assets/images/MenuButton.png" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
-    { id: "shoot_cannon", src: "../../Assets/audio/shoot_cannon.wav" },
+    { id: "Ocean", src: "../../Assets/images/ocean.png" },
+    { id: "menu", src: "../../Assets/audio/menu_music.mp3" },
+    { id: "game", src: "../../Assets/audio/game_music.mp3" },
+    { id: "over", src: "../../Assets/audio/over_music.mp3" },
+    { id: "cannon", src: "../../Assets/audio/shoot_cannon.wav" },
     { id: "damage", src: "../../Assets/audio/damage.wav" },
     { id: "pickup1", src: "../../Assets/audio/pickup1.wav" }
 ];
@@ -45,6 +84,9 @@ function preload(): void {
     assets.installPlugin(createjs.Sound);
     assets.on("complete", init, this);
     assets.loadManifest(manifest);
+
+    //SpriteSheet is configured and preloaded
+    atlas = new createjs.SpriteSheet(data) // atlas is declared and holds sprites in the atlas spritesheet
 }
 
 function init():void {
