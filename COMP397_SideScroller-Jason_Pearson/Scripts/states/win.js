@@ -5,21 +5,21 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var states;
 (function (states) {
-    // OVER CLASS
-    var Over = (function (_super) {
-        __extends(Over, _super);
+    // WIN CLASS
+    var Win = (function (_super) {
+        __extends(Win, _super);
         // CONSTRUCTOR
-        function Over() {
+        function Win() {
             _super.call(this);
         }
         // PUBLIC METHODS
-        Over.prototype.start = function () {
+        Win.prototype.start = function () {
             //Add Ocean to Menu Scene at Start - for Aesthetics 
             this._ocean = new objects.Ocean();
             this.addChild(this._ocean);
             // level label
-            this._gameOverLabel = new objects.Label("Game Over", "50px Diane de France", "#FF2B46", 320, 140);
-            this.addChild(this._gameOverLabel); // add label to the stage
+            this._winLabel = new objects.Label("Expedition Successful", "50px Diane de France", "#2BFF7A", 320, 140);
+            this.addChild(this._winLabel); // add label to the stage
             // restart button
             this._restartButton = new objects.Button("RestartButton", 320, 400);
             this._restartButton.on("click", this._clickRestartButton, this); // event listener
@@ -27,18 +27,18 @@ var states;
             stage.addChild(this);
             createjs.Sound.play("over", { loop: -1 }); // play game over music at Start - infinite loop (-1)
         };
-        Over.prototype.update = function () {
+        Win.prototype.update = function () {
             this._ocean.update();
-            //this._gameOverLabel.rotation += 5;
+            //this._winLabel.rotation += 5;
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++++
         // Callback function / Event Handler for Back Button Click
-        Over.prototype._clickRestartButton = function (event) {
+        Win.prototype._clickRestartButton = function (event) {
             createjs.Sound.stop(); // stop game over music upon clicking the Restart Button
             changeState(config.MENU_STATE);
         };
-        return Over;
+        return Win;
     })(objects.Scene);
-    states.Over = Over;
+    states.Win = Win;
 })(states || (states = {}));
-//# sourceMappingURL=over.js.map
+//# sourceMappingURL=win.js.map

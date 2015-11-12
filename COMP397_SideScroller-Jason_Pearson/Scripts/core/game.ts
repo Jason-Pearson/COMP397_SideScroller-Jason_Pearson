@@ -12,9 +12,12 @@
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/ship.ts" />
+/// <reference path="../objects/enemy.ts" />
+/// <reference path="../objects/barrel.ts" />
 /// <reference path="../objects/ocean.ts" />
 /// <reference path="../objects/scene.ts" />
 
+/// <reference path="../states/win.ts" />
 /// <reference path="../states/over.ts" />
 /// <reference path="../states/game.ts" />
 /// <reference path="../states/menu.ts" />
@@ -32,6 +35,7 @@ var currentState: objects.Scene; // alias for our current state
 var menu: states.Menu;
 var game: states.Game;
 var over: states.Over;
+var win: states.Win;
 var atlas: createjs.SpriteSheet; // variable of type creatjs SpriteSheet to hold a reference for atlas spritesheet
 
 //SPRITE OBJECTS from ATLAS SPRITESHEET
@@ -57,10 +61,10 @@ var data = {
         "MenuButton": [1],
         "RestartButton": [2],
         "StartButton": [3],
-        "Barrel": [4],
+        "Leviathan": [4],
         "cannonball": [5],
         "Crate": [6],
-        "Leviathan": [7]
+        "Barrel": [7]
     }
 
 };
@@ -71,9 +75,9 @@ var manifest = [
     { id: "MenuButton", src: "../../Assets/images/MenuButton.png" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
     { id: "Ocean", src: "../../Assets/images/ocean.png" },
-    { id: "menu", src: "../../Assets/audio/menu_music.mp3" },
-    { id: "game", src: "../../Assets/audio/game_music.mp3" },
-    { id: "over", src: "../../Assets/audio/over_music.mp3" },
+    { id: "menu", src: "../../Assets/audio/menu1_music.mp3" },
+    { id: "game", src: "../../Assets/audio/game1_music.mp3" },
+    { id: "over", src: "../../Assets/audio/over1_music.mp3" },
     { id: "cannon", src: "../../Assets/audio/shoot_cannon.wav" },
     { id: "damage", src: "../../Assets/audio/damage.wav" },
     { id: "pickup1", src: "../../Assets/audio/pickup1.wav" }
@@ -149,6 +153,12 @@ function changeState(state): void {
             stage.removeAllChildren();
             over = new states.Over();
             currentState = over;
+            break;
+        case config.WIN_STATE:
+            // show the win scene
+            stage.removeAllChildren();
+            win = new states.Win();
+            currentState = win;
             break;
     }
 

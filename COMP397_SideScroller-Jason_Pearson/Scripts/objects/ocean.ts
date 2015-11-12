@@ -1,7 +1,7 @@
 ﻿module objects {
     export class Ocean extends createjs.Bitmap { // Ocean class/controller - extends to createjs.Bitmap in order to reference the Ocean.png as a Bitmap throughout this class
         //PRIVATE INSTANCE VARIABLES
-        private _dx: number; // the speed on the x-axis to which the Ocean with scroll
+        private _dx: number; // the speed on the x-axis to which the Ocean will scroll
 
         //CONTRUCTOR
         constructor() {
@@ -20,7 +20,7 @@
          */
         public update(): void {
             this.x -= this._dx; //every frame, the position of the Ocean is decremented by _dx= 5(pixels)
-            this._checkBounds(); //ever frame, call _checkBounds to check the bounds before resetting Ocean
+            this._checkBounds(); //every frame, call _checkBounds to check the bounds before resetting Ocean
         }
 
         //PRIVATE METHODS

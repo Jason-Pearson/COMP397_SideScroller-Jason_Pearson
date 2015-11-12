@@ -20,7 +20,7 @@ var objects;
          */
         Ocean.prototype.update = function () {
             this.x -= this._dx; //every frame, the position of the Ocean is decremented by _dx= 5(pixels)
-            this._checkBounds(); //ever frame, call _checkBounds to check the bounds before resetting Ocean
+            this._checkBounds(); //every frame, call _checkBounds to check the bounds before resetting Ocean
         };
         //PRIVATE METHODS
         /**

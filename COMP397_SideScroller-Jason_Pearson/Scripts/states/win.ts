@@ -1,8 +1,8 @@
 ﻿module states {
-    // OVER CLASS
-    export class Over extends objects.Scene {
+    // WIN CLASS
+    export class Win extends objects.Scene {
         // PRIVATE INSTANCE VARIABLES
-        private _gameOverLabel: objects.Label;
+        private _winLabel: objects.Label;
         private _restartButton: objects.Button;
         private _ocean: objects.Ocean; // reference of type Ocean class - holds Ocean bitmap, along with class properties to control constant scrolling
 
@@ -19,8 +19,8 @@
             this.addChild(this._ocean);
 
             // level label
-            this._gameOverLabel = new objects.Label("Game Over", "50px Diane de France", "#FF2B46", 320, 140);
-            this.addChild(this._gameOverLabel); // add label to the stage
+            this._winLabel = new objects.Label("Expedition Successful", "50px Diane de France", "#2BFF7A", 320, 140);
+            this.addChild(this._winLabel); // add label to the stage
 
             // restart button
             this._restartButton = new objects.Button("RestartButton", 320, 400);
@@ -35,7 +35,7 @@
 
         public update(): void {
             this._ocean.update();
-            //this._gameOverLabel.rotation += 5;
+            //this._winLabel.rotation += 5;
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++++
