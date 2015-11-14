@@ -14,15 +14,12 @@
         // PUBLIC METHODS
         public start(): void {
 
-            //Cursor for Over Scene
-            stage.cursor = "default";
-
             //Add Ocean to Menu Scene at Start - for Aesthetics 
             this._ocean = new objects.Ocean();
             this.addChild(this._ocean);
 
             // level label
-            this._gameOverLabel = new objects.Label("Expedition Failed", "50px Diane de France", "#FF2B46", 320, 140);
+            this._gameOverLabel = new objects.Label("Game Over", "50px Diane de France", "#FF2B46", 320, 140);
             this.addChild(this._gameOverLabel); // add label to the stage
 
             // restart button
