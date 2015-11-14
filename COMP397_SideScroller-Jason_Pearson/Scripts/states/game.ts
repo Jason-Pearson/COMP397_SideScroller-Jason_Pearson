@@ -18,6 +18,9 @@
         // PUBLIC METHODS
         public start(): void {
 
+            //Cursor for Game Scene
+            stage.cursor = "crosshair";
+
             //Add Ocean to Game Scene at Start
             this._ocean = new objects.Ocean();
             this.addChild(this._ocean);
@@ -39,11 +42,12 @@
             this.addChild(this._ship);
 
             //Add Enemies to Game Scene at Start
-            for (var enemy = 0; enemy < 4; enemy++)
+            for (var enemy = 0; enemy < 1; enemy++)
             {
                 this._enemies[enemy] = new objects.Enemy();
                 this.addChild(this._enemies[enemy]);
             }
+
 
             stage.addChild(this);
 
@@ -57,7 +61,7 @@
             this._barrel2.update(); // every frame, call the update method of Barrel class in order to spawn and scroll
             this._barrel3.update(); // every frame, call the update method of Barrel class in order to spawn and scroll
             this._ship.update(); // every frame, call the update method of Ship class in order to move
-            for (var enemy = 0; enemy < 4; enemy++) {// every frame, call the update method of Enemy class of All Enemies in order to spawn and drift
+            for (var enemy = 0; enemy < 1; enemy++) {// every frame, call the update method of Enemy class of All Enemies in order to spawn and drift
                 this._enemies[enemy].update(); 
             }
         }

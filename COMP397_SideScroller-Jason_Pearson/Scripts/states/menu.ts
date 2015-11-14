@@ -14,6 +14,9 @@
         // PUBLIC METHODS
         public start(): void {
 
+            //Cursor for Menu Scene
+            stage.cursor = "default";
+
             //Add Ocean to Menu Scene at Start - for Aesthetics 
             this._ocean = new objects.Ocean();
             this.addChild(this._ocean);

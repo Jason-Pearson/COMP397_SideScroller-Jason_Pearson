@@ -14,6 +14,8 @@ var states;
         }
         // PUBLIC METHODS
         Menu.prototype.start = function () {
+            //Cursor for Menu Scene
+            stage.cursor = "default";
             //Add Ocean to Menu Scene at Start - for Aesthetics 
             this._ocean = new objects.Ocean();
             this.addChild(this._ocean);
