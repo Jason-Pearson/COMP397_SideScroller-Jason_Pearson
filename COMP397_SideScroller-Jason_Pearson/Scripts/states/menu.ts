@@ -29,7 +29,7 @@
 
             stage.addChild(this);
 
-            createjs.Sound.play("menu", {loop:-1}); // play menu music at Start - infinite loop (-1)
+            createjs.Sound.play("menu", { loop: -1, volume: 0.5}); // play menu music at Start - infinite loop (-1)
         }
 
 

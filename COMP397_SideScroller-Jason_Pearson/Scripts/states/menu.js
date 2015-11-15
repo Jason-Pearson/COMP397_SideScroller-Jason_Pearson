@@ -25,7 +25,7 @@ var states;
             this._startButton.on("click", this._clickStartButton, this); // event listener
             this.addChild(this._startButton);
             stage.addChild(this);
-            createjs.Sound.play("menu", { loop: -1 }); // play menu music at Start - infinite loop (-1)
+            createjs.Sound.play("menu", { loop: -1, volume: 0.5 }); // play menu music at Start - infinite loop (-1)
         };
         Menu.prototype.update = function () {
             this._ocean.update();
