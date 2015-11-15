@@ -12,8 +12,8 @@ var managers;
          * This method needs two GameObjects to hold as arugments to pass into the CheckCollision Method
          * public update(object1: objects.GameObject, object2: objects.GameObject)
          */
-        Collision.prototype.update = function (object1, object2) {
-            this._checkCollision(object1, object2);
+        Collision.prototype.update = function (object1, object2, num) {
+            this._checkCollision(object1, object2, num);
         };
         /**
          * Private Utility Method - Distance - returns distance between two points in pixels in an integer - FOR COLLISION DETECTION
@@ -26,7 +26,7 @@ var managers;
          * Private Utility Method - Check Collision - checks the collision between two gameobjects
          * GameObjects are passed into this method by the arguments of the Update Method of the Collsion Class
          */
-        Collision.prototype._checkCollision = function (object1, object2) {
+        Collision.prototype._checkCollision = function (object1, object2, num) {
             // if the (distance between ship and other gameobject) is less than (half the height of the Ship + half the height of the other game object) = Collision
             if (this._distance(object1.getPosition(), object2.getPosition()) <
                 (object1.getHalfHeight() + object2.getHalfHeight())) {
@@ -36,10 +36,14 @@ var managers;
                         case "Barrel":
                             console.log("Hit Barrel");
                             createjs.Sound.play("pickup1"); // play game music at Start - infinite loop (-1)
+                            scoreboard.addBarrels(1);
+                            game._barrelReset(num);
                             break;
                         case "Leviathan":
                             console.log("Hit Leviathan");
                             createjs.Sound.play("damage"); // play game music at Start - infinite loop (-1)
+                            scoreboard.removeLives(1);
+                            game._enemyReset(num);
                             break;
                     }
                     object2.setIsColliding(true); // if it is currently colliding, then IsColliding is set and remains True

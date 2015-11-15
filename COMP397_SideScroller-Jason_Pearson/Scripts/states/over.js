@@ -18,8 +18,11 @@ var states;
             this._ocean = new objects.Ocean();
             this.addChild(this._ocean);
             // level label
-            this._gameOverLabel = new objects.Label("Game Over", "50px Diane de France", "#FF2B46", 320, 140);
+            this._gameOverLabel = new objects.Label("Expedition Failed", "50px Diane de France", "#FF2B46", 320, 140, true);
             this.addChild(this._gameOverLabel); // add label to the stage
+            //  plundered
+            this._finalPlunderedLabel = new objects.Label("Plundered: " + scoreboard._barrels + "/20", "40px Diane de France", "#FF2B46", 320, 240, true);
+            this.addChild(this._finalPlunderedLabel); // add label to the stage
             // restart button
             this._restartButton = new objects.Button("RestartButton", 320, 400);
             this._restartButton.on("click", this._clickRestartButton, this); // event listener

@@ -3,6 +3,8 @@
     export class Menu extends objects.Scene {
         // PRIVATE INSTANCE VARIABLES
         private _gameTitleLabel: objects.Label;
+        private _intructLabel: objects.Label;
+        private _intructLabel2: objects.Label;
         private _startButton: objects.Button;
         private _ocean: objects.Ocean; // reference of type Ocean class - holds Ocean bitmap, along with class properties to control constant scrolling
 
@@ -19,9 +21,13 @@
             this.addChild(this._ocean);
 
             // hello label
-            this._gameTitleLabel = new objects.Label("Ocean of Leviathans", "50px Diane de France", "#FFCB35", 320, 140); //Change font and color
+            this._gameTitleLabel = new objects.Label("Ocean of Leviathans", "50px Diane de France", "#FFCB35", 320, 140, true); //Change font and color
             this.addChild(this._gameTitleLabel); // add label to the stage
 
+            this._intructLabel = new objects.Label("Move the mouse up and down to move ship.", "25px Diane de France", "#FFCB35", 320, 220, true); //Change font and color
+            this.addChild(this._intructLabel); // add label to the stage
+            this._intructLabel2 = new objects.Label("Attain 20 barrels of loose treasure and become a legend!", "25px Diane de France", "#FFCB35", 320, 250, true); //Change font and color
+            this.addChild(this._intructLabel2); // add label to the stage
             // start button
             this._startButton = new objects.Button("StartButton", 320, 400);
             this._startButton.on("click", this._clickStartButton, this); // event listener

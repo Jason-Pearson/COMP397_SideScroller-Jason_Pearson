@@ -16,6 +16,10 @@ var states;
         }
         // PUBLIC METHODS
         Game.prototype.start = function () {
+            scoreboard.setLives(5);
+            scoreboard.setBarrels(0);
+            console.log(scoreboard.getLives());
+            console.log(scoreboard.getBarrels());
             //Add Ocean to Game Scene at Start
             this._ocean = new objects.Ocean();
             this.addChild(this._ocean);
@@ -38,6 +42,12 @@ var states;
             }
             //Instantiating Collision Managers
             this._collision = new managers.Collision;
+            // Plundered Label
+            this._plunderedLabel = new objects.Label("Plundered: ", "40px Consolas", "#FFFF00", 5, 5, false);
+            this.addChild(this._plunderedLabel);
+            // Lives Label
+            this._livesLabel = new objects.Label("Lives: ", "40px Consolas", "#FFFF00", 450, 5, false);
+            this.addChild(this._livesLabel);
             stage.addChild(this);
             createjs.Sound.play("game", { loop: -1, volume: 0.5, delay: 100 }); // play game music at Start - infinite loop (-1)
         };
@@ -47,13 +57,41 @@ var states;
             this._ocean.update(); // every frame, call the update method of Ocean class in order to scroll
             for (var barrel = 0; barrel < 3; barrel++) {
                 this._barrels[barrel].update();
-                this._collision.update(this._ship, this._barrels[barrel]); // every frame, check collision between Ship and each Barrel
+                this._collision.update(this._ship, this._barrels[barrel], barrel); // every frame, check collision between Ship and each Barrel
             }
             this._ship.update(); // every frame, call the update method of Ship class in order to move
             for (var enemy = 0; enemy < 5; enemy++) {
                 this._enemies[enemy].update();
-                this._collision.update(this._ship, this._enemies[enemy]); // every frame, check collision between Ship and each Enemy
+                this._collision.update(this._ship, this._enemies[enemy], enemy); // every frame, check collision between Ship and each Enemy
             }
+            this._updateLabels();
+            this._win();
+            this._gameOver();
+        };
+        Game.prototype._updateLabels = function () {
+            this._plunderedLabel.text = "Plundered: " + scoreboard.getBarrels();
+            this._livesLabel.text = "Lives: " + scoreboard.getLives();
+        };
+        Game.prototype._gameOver = function () {
+            if (scoreboard.getLives() == 0) {
+                createjs.Sound.stop(); // stop game music upon losing all lives
+                changeState(config.OVER_STATE);
+            }
+        };
+        Game.prototype._win = function () {
+            if (scoreboard.getBarrels() >= 20) {
+                createjs.Sound.stop(); // stop game music upon getting 20 barrels
+                changeState(config.WIN_STATE);
+            }
+            /*if (scoreboard._barrels / 5 == 1) {
+                scoreboard.addLives(1);
+            }*/
+        };
+        Game.prototype._barrelReset = function (barrel) {
+            this._barrels[barrel]._reset();
+        };
+        Game.prototype._enemyReset = function (enemy) {
+            this._enemies[enemy]._reset();
         };
         return Game;
     })(objects.Scene);

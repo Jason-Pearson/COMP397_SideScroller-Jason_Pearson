@@ -29,7 +29,7 @@
         /**
          * Resets the Enemy just before the canvas at x = 640 + width, and resets at a random y-position within the height of the canvas
          */
-        private _reset(): void {
+        public _reset(): void {
             this._dy = Math.floor(Math.random() * 4) - 2; // vertical drift
             this._dx = Math.floor(Math.random() * 5) + 5; // horizontal speed
             this.y = Math.floor(Math.random() * (480 - this._height)) + (this._height * 0.5); // the entire height of the sprite image will be within view of the canvas while randomely resetting, but the verticle drift will make that irrelevant

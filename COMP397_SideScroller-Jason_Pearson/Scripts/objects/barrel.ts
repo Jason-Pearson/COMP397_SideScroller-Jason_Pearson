@@ -29,7 +29,7 @@
         /**
          * Resets the Barrel radomely between x = 800 (off-screen) and just before the canvas (x = 640), and resets at a random y-position within the height of the canvas
          */
-        private _reset(): void {
+        public _reset(): void {
             this.y = Math.floor(Math.random() * (480 - this._height)) + (this._height * 0.5); // the entire height of the sprite image will be within view of the canvas while randomely resetting
             this.x = Math.floor(Math.random() * (800)) + (640 + this._width); // (Using 640 + width of sprite: so it doesn't pop onto the screen, but off-screen for better transition into the scene)
         }

@@ -8,6 +8,7 @@
 /// <reference path="../typings/soundjs/soundjs.d.ts" />
 /// <reference path="../typings/preloadjs/preloadjs.d.ts" />
 
+/// <reference path="../managers/scoreboard.ts" />
 /// <reference path="../managers/collision.ts" />
 
 /// <reference path="../objects/gameobject.ts" />
@@ -32,6 +33,9 @@ var stage: createjs.Stage;
 var stats: Stats;
 var state: number;
 var currentState: objects.Scene; // alias for our current state
+
+// MANAGERS
+var scoreboard: managers.ScoreBoard;
 
 // GAME OBJECTS
 var menu: states.Menu;
@@ -80,6 +84,7 @@ var manifest = [
     { id: "menu", src: "../../Assets/audio/menu1_music.mp3" },
     { id: "game", src: "../../Assets/audio/game1_music.mp3" },
     { id: "over", src: "../../Assets/audio/over1_music.mp3" },
+    { id: "win", src: "../../Assets/audio/win_music.mp3" },
     { id: "cannon", src: "../../Assets/audio/shoot_cannon.wav" },
     { id: "damage", src: "../../Assets/audio/damage.wav" },
     { id: "pickup1", src: "../../Assets/audio/pickup1.wav" }
@@ -102,6 +107,8 @@ function init():void {
     createjs.Ticker.setFPS(60); // set frame rate to 60 fps
     createjs.Ticker.on("tick", gameLoop); // update gameLoop every frame
     setupStats(); // sets up our stats counting
+
+    scoreboard = new managers.ScoreBoard();
 
     state = config.MENU_STATE;
     changeState(state);
@@ -128,11 +135,6 @@ function setupStats():void {
     stats.domElement.style.top = "0px";
     document.body.appendChild(stats.domElement);
 }
-
-
-
-
-
 // state machine prep
 function changeState(state): void {
     // Launch various scenes
