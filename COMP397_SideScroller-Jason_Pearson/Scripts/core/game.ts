@@ -8,6 +8,8 @@
 /// <reference path="../typings/soundjs/soundjs.d.ts" />
 /// <reference path="../typings/preloadjs/preloadjs.d.ts" />
 
+/// <reference path="../managers/collision.ts" />
+
 /// <reference path="../objects/gameobject.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/button.ts" />
