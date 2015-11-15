@@ -28,7 +28,7 @@
          * This variable works for all GameObjects since they inherit the GameObject class
          */
         public getPosition(): createjs.Point {
-            var position: createjs.Point = new createjs.Point(this.x, this.y);; // Hold Point value of the GameObject object (x and y positions)
+            var position: createjs.Point = new createjs.Point(this.x, this.y); // Hold Point value of the GameObject object (x and y positions)
             return position;
         }
 
@@ -53,8 +53,8 @@
          * Uses a boolean instead for a single check
          * Setter Method - to set the collision flag of GameObject - True or False
          */
-        public setIsColliding(isColliding:boolean): boolean {
-            return this._isColliding = isColliding;
+        public setIsColliding(isColliding:boolean) {
+            this._isColliding = isColliding;
         }
 
         /**
@@ -66,8 +66,8 @@
         /**
          * Setter Method - to set the tag name of the GameObject (via imagestring variable)
          */
-        public setName(_tagName:string): string {
-            return this._tagName = _tagName;
+        public setName(_tagName:string) {
+            this._tagName = _tagName;
         }
     }
 }

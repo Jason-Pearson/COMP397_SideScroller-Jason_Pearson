@@ -44,54 +44,8 @@
 
             createjs.Sound.play("game", { loop: -1, volume: 0.5, delay: 100 }); // play game music at Start - infinite loop (-1)
         }
-
-        //GAME SCENE UPDATE METHOD
-        public update(): void {
-            this._ocean.update(); // every frame, call the update method of Ocean class in order to scroll
-            for (var barrel = 0; barrel < 1; barrel++) {// every frame, call the update method of Enemy class of All Enemies in order to spawn and drift
-                this._barrels[barrel].update();
-                this._checkCollision(this._barrels[barrel]); // every frame, check collision between Ship and each barrel
-            }
-            this._ship.update(); // every frame, call the update method of Ship class in order to move
-            for (var enemy = 0; enemy < 1; enemy++) {// every frame, call the update method of Enemy class of All Enemies in order to spawn and drift
-                this._enemies[enemy].update(); 
-                this._checkCollision(this._enemies[enemy]); // every frame, check collision between Ship and each barrel
-            }
-
-            
-
-        }
-
         // PRIVATE UTILITY METHODS ++++++++++++++++++++++++++++++++++++++++++++++
         
-        /**
-         * Private Utility Method - Check Collision - checks the collision between Ship and any other gameobjects   
-         */
-        private _checkCollision(object: objects.GameObject): void {
-            // if the (distance between ship and other gameobject) is less than (half the height of the Ship + half the height of the other game object) = Collision
-                if (this._distance(this._ship.getPosition(), object.getPosition()) <
-                    (this._ship.getHalfHeight() + object.getHalfHeight())) {
-                    
-                    
-                    //Check if Ship is not ALREADY colliding - when it first enters collision (registers a hit), it is set to true only ONCE - the distance will be rechecked every frame, but not this collision when it is already true 
-                    if (!object.getIsColliding()) {
-                        switch (object.getName()) {
-                            case "Barrel":
-                                console.log("Hit Barrel");
-                                break;
-                            case "Leviathan":
-                                console.log("Hit Leviathan");
-                                break;
-                        }
-                        object.setIsColliding(true); // if it is currently colliding, then IsColliding is set and remains True
-                    }
-                else { //otherwise, until the distance check is not true...
-                    object.setIsColliding(false);// if it is not currently colliding, then IsColliding is set and remains False
-                }
-
-
-            }
-        }
 
         /**
          * Private Utility Method - Distance - returns distance between two points in pixels in an integer - FOR COLLISION DETECTION
@@ -102,6 +56,53 @@
         }
         //GAME OVER METHOD - Lives reach 0 - stop music, save score, change state
 
+        /**
+         * Private Utility Method - Check Collision - checks the collision between Ship and any other gameobjects   
+         */
+        private _checkCollision(object: objects.GameObject): void {
+            // if the (distance between ship and other gameobject) is less than (half the height of the Ship + half the height of the other game object) = Collision
+            if (this._distance(this._ship.getPosition(), object.getPosition()) <
+                (this._ship.getHalfHeight() + object.getHalfHeight())) {
+                    
+                    
+                //Check if Ship is not ALREADY colliding - when it first enters collision (registers a hit), it is set to true only ONCE - the distance will be rechecked every frame, but not this collision when it is already true 
+                if (!object.getIsColliding()) {
+                    switch (object.getName()) {
+                        case "Barrel":
+                            console.log("Hit Barrel");
+                            createjs.Sound.play("pickup1"); // play game music at Start - infinite loop (-1)
+                            break;
+                        case "Leviathan":
+                            console.log("Hit Leviathan");
+                            createjs.Sound.play("damage"); // play game music at Start - infinite loop (-1)
+                            break;
+                    }
+                    object.setIsColliding(true); // if it is currently colliding, then IsColliding is set and remains True
+                }
+            }//THIS EXTRA BRACKET IS MAKES THE IF STATEMENT FOR !OBJECT.GETISCOLLIDING NOT ACTIVATED WHILE DISTANCT CHECK = TRUE --> SINCE SETISCOLLIDING(TRUE) AFTER THE VERY FIRST CHECK!!!
+                else { //otherwise, until the distance check is not true...
+                    object.setIsColliding(false);// if it is not currently colliding, then IsColliding is set and remains False
+                }
+
+
+            }
+
+        //GAME SCENE UPDATE METHOD
+        public update(): void {
+            this._ocean.update(); // every frame, call the update method of Ocean class in order to scroll
+            for (var barrel = 0; barrel < 1; barrel++) {// every frame, call the update method of Enemy class of All Enemies in order to spawn and drift
+                this._barrels[barrel].update();
+                this._checkCollision(this._barrels[barrel]); // every frame, check collision between Ship and each barrel
+            }
+            this._ship.update(); // every frame, call the update method of Ship class in order to move
+            for (var enemy = 0; enemy < 1; enemy++) {// every frame, call the update method of Enemy class of All Enemies in order to spawn and drift
+                this._enemies[enemy].update();
+                this._checkCollision(this._enemies[enemy]); // every frame, check collision between Ship and each barrel
+            }
+
+
+
+        }
     }
 
 

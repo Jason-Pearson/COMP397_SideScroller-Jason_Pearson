@@ -39,20 +39,15 @@ var states;
             stage.addChild(this);
             createjs.Sound.play("game", { loop: -1, volume: 0.5, delay: 100 }); // play game music at Start - infinite loop (-1)
         };
-        //GAME SCENE UPDATE METHOD
-        Game.prototype.update = function () {
-            this._ocean.update(); // every frame, call the update method of Ocean class in order to scroll
-            for (var barrel = 0; barrel < 1; barrel++) {
-                this._barrels[barrel].update();
-                this._checkCollision(this._barrels[barrel]); // every frame, check collision between Ship and each barrel
-            }
-            this._ship.update(); // every frame, call the update method of Ship class in order to move
-            for (var enemy = 0; enemy < 1; enemy++) {
-                this._enemies[enemy].update();
-                this._checkCollision(this._enemies[enemy]); // every frame, check collision between Ship and each barrel
-            }
-        };
         // PRIVATE UTILITY METHODS ++++++++++++++++++++++++++++++++++++++++++++++
+        /**
+         * Private Utility Method - Distance - returns distance between two points in pixels in an integer - FOR COLLISION DETECTION
+         * √((x2 - x1)^2) + ((y2 - y1)^2) = Distance (integer via Math.floor)
+         */
+        Game.prototype._distance = function (p1, p2) {
+            return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
+        };
+        //GAME OVER METHOD - Lives reach 0 - stop music, save score, change state
         /**
          * Private Utility Method - Check Collision - checks the collision between Ship and any other gameobjects
          */
@@ -65,24 +60,32 @@ var states;
                     switch (object.getName()) {
                         case "Barrel":
                             console.log("Hit Barrel");
+                            createjs.Sound.play("pickup1"); // play game music at Start - infinite loop (-1)
                             break;
                         case "Leviathan":
                             console.log("Hit Leviathan");
+                            createjs.Sound.play("damage"); // play game music at Start - infinite loop (-1)
                             break;
                     }
                     object.setIsColliding(true); // if it is currently colliding, then IsColliding is set and remains True
                 }
-                else {
-                    object.setIsColliding(false); // if it is not currently colliding, then IsColliding is set and remains False
-                }
+            } //THIS EXTRA BRACKET IS MAKES THE IF STATEMENT FOR !OBJECT.GETISCOLLIDING NOT ACTIVATED WHILE DISTANCT CHECK = TRUE --> SINCE SETISCOLLIDING(TRUE) AFTER THE VERY FIRST CHECK!!!
+            else {
+                object.setIsColliding(false); // if it is not currently colliding, then IsColliding is set and remains False
             }
         };
-        /**
-         * Private Utility Method - Distance - returns distance between two points in pixels in an integer - FOR COLLISION DETECTION
-         * √((x2 - x1)^2) + ((y2 - y1)^2) = Distance (integer via Math.floor)
-         */
-        Game.prototype._distance = function (p1, p2) {
-            return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
+        //GAME SCENE UPDATE METHOD
+        Game.prototype.update = function () {
+            this._ocean.update(); // every frame, call the update method of Ocean class in order to scroll
+            for (var barrel = 0; barrel < 1; barrel++) {
+                this._barrels[barrel].update();
+                this._checkCollision(this._barrels[barrel]); // every frame, check collision between Ship and each barrel
+            }
+            this._ship.update(); // every frame, call the update method of Ship class in order to move
+            for (var enemy = 0; enemy < 1; enemy++) {
+                this._enemies[enemy].update();
+                this._checkCollision(this._enemies[enemy]); // every frame, check collision between Ship and each barrel
+            }
         };
         return Game;
     })(objects.Scene);
