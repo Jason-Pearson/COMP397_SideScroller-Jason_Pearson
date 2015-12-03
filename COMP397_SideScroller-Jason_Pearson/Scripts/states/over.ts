@@ -7,6 +7,7 @@
         private _ocean: objects.Ocean; // reference of type Ocean class - holds Ocean bitmap, along with class properties to control constant scrolling
 
         private _finalPlunderedLabel: objects.Label;
+
         // CONSTRUCTOR
         constructor() {
             super();
@@ -20,11 +21,11 @@
             this.addChild(this._ocean);
 
             // level label
-            this._gameOverLabel = new objects.Label("Expedition Failed", "50px Diane de France", "#FF2B46", 320, 140, true);
+            this._gameOverLabel = new objects.Label("Expedition Failed", "50px " + config.FONT_FAMILY_DIANE, config.FONT_COLOR_RED, 320, 140, true);
             this.addChild(this._gameOverLabel); // add label to the stage
 
             //  plundered
-            this._finalPlunderedLabel = new objects.Label("Plundered: " + scoreboard._barrels + "/20", "40px Diane de France", "#FF2B46", 320, 240, true);
+            this._finalPlunderedLabel = new objects.Label("Plundered: " + scoreboard._barrels + "/20", "40px " + config.FONT_FAMILY_DIANE, config.FONT_COLOR_RED, 320, 240, true);
             this.addChild(this._finalPlunderedLabel); // add label to the stage
 
             // restart button
