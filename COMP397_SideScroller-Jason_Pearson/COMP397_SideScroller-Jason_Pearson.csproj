@@ -96,6 +96,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\config\config.ts" />
     <TypeScriptCompile Include="Scripts\core\game.ts" />
+    <TypeScriptCompile Include="Scripts\core\reference.ts" />
     <TypeScriptCompile Include="Scripts\managers\collision.ts" />
     <TypeScriptCompile Include="Scripts\managers\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\objects\barrel.ts" />
@@ -134,7 +135,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25618</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1947/</IISUrl>
+          <IISUrl>http://localhost:1948/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -43,10 +43,10 @@ var states;
             //Instantiating Collision Managers
             this._collision = new managers.Collision;
             // Plundered Label
-            this._plunderedLabel = new objects.Label("Plundered: ", "40px Consolas", "#FFFF00", 5, 5, false);
+            this._plunderedLabel = new objects.Label("Plundered: ", "40px " + config.FONT_FAMILY_DOCK, config.FONT_COLOR_YELLOW2, 5, 5, false);
             this.addChild(this._plunderedLabel);
             // Lives Label
-            this._livesLabel = new objects.Label("Lives: ", "40px Consolas", "#FFFF00", 450, 5, false);
+            this._livesLabel = new objects.Label("Lives: ", "40px " + config.FONT_FAMILY_DOCK, config.FONT_COLOR_YELLOW2, 450, 5, false);
             this.addChild(this._livesLabel);
             stage.addChild(this);
             createjs.Sound.play("game", { loop: -1, volume: 0.5, delay: 100 }); // play game music at Start - infinite loop (-1)
