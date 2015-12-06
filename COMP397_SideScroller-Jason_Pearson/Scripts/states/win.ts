@@ -21,10 +21,10 @@
             this.addChild(this._ocean);
 
             // level label
-            this._winLabel = new objects.Label("Expedition Successful", "50px " + config.FONT_FAMILY_DIANE, config.FONT_COLOR_GREEN, 320, 140, true);
+            this._winLabel = new objects.Label("Expedition Successful", "150px " + config.FONT_FAMILY_DIANE, config.FONT_COLOR_GREEN, 319, 180, true);
             this.addChild(this._winLabel); // add label to the stage
 
-            this._winMessageLabel = new objects.Label("You have become a legend amongst the bravest of them all", "25px " + config.FONT_FAMILY_DIANE, config.FONT_COLOR_GREEN, 320, 240, true);
+            this._winMessageLabel = new objects.Label("You have become a legend amongst the bravest of them all", "20px " + config.FONT_FAMILY_DOCK, config.FONT_COLOR_GREEN, 320, 240, true);
             this.addChild(this._winMessageLabel); // add label to the stage
 
             // restart button

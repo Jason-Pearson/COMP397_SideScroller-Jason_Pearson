@@ -18,11 +18,11 @@ var states;
             this._ocean = new objects.Ocean();
             this.addChild(this._ocean);
             // hello label
-            this._gameTitleLabel = new objects.Label("Ocean of Leviathans", "50px " + config.FONT_FAMILY_DOCK, config.FONT_COLOR_YELLOW1, 320, 140, true); //Change font and color
+            this._gameTitleLabel = new objects.Label("Ocean of Leviathans", "150px " + config.FONT_FAMILY_DIANE, config.FONT_COLOR_YELLOW1, 320, 180, true); //Change font and color
             this.addChild(this._gameTitleLabel); // add label to the stage
-            this._intructLabel = new objects.Label("Move the mouse up and down to move ship.", "25px " + config.FONT_FAMILY_DIANE, config.FONT_COLOR_YELLOW1, 320, 220, true); //Change font and color
+            this._intructLabel = new objects.Label("Move the mouse up and down to move ship", "20px " + config.FONT_FAMILY_DOCK, config.FONT_COLOR_YELLOW1, 320, 220, true); //Change font and color
             this.addChild(this._intructLabel); // add label to the stage
-            this._intructLabel2 = new objects.Label("Attain 20 barrels of loose treasure and become a legend!", "25px " + config.FONT_FAMILY_DIANE, config.FONT_COLOR_YELLOW1, 320, 250, true); //Change font and color
+            this._intructLabel2 = new objects.Label("Attain 20 barrels of loose treasure and become a legend!", "20px " + config.FONT_FAMILY_DOCK, config.FONT_COLOR_YELLOW1, 320, 250, true); //Change font and color
             this.addChild(this._intructLabel2); // add label to the stage
             // start button
             this._startButton = new objects.Button("StartButton", 320, 400);
